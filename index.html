@@ -1,174 +1,1057 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Namesh Dilshan | Portfolio</title>
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namesh Dilshan - Senior Software Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-    header {
-      background: linear-gradient(90deg, #2563eb, #1e3a8a);
-      color: #fff;
-      text-align: center;
-      padding: 3rem 1rem;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    header p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
 
-    header a {
-      background: #fff;
-      color: #2563eb;
-      padding: 0.7rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
 
-    nav {
-      background: #fff;
-      padding: 1rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
 
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    nav a:hover { color: #2563eb; }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-    section {
-      padding: 3rem 1rem;
-      max-width: 900px;
-      margin: auto;
-    }
+        .nav-links a:hover {
+            color: #667eea;
+        }
 
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #2563eb;
-      border-bottom: 2px solid #2563eb;
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
 
-    ul { margin-left: 1.5rem; margin-top: 1rem; }
-    ul li { margin-bottom: 0.5rem; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s infinite ease-in-out;
+            z-index: -1;
+        }
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #f3f4f6;
-      margin-top: 3rem;
-      color: #666;
-    }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-20px, -20px) rotate(1deg); }
+            66% { transform: translate(20px, -10px) rotate(-1deg); }
+        }
 
-    .contact a {
-      display: inline-block;
-      margin: 0.3rem;
-      color: #2563eb;
-      text-decoration: none;
-    }
+        .hero-content {
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
 
-    .contact a:hover { text-decoration: underline; }
-  </style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .profile-placeholder {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-achievements {
+            list-style: none;
+        }
+
+        .project-achievements li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .project-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: #667eea;
+            margin-right: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .form-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-placeholder {
+                width: 250px;
+                height: 250px;
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">Namesh Dilshan</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Hero -->
-  <header>
-    <h1>Hi, I'm Namesh Dilshan 👋</h1>
-    <p>Senior Software Engineer | Java | Spring Boot | Flutter | React</p>
-    <a href="cv.pdf" target="_blank">📄 Download CV</a>
-  </header>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Namesh Dilshan</h1>
+            <p>Senior Software Engineer • Banking Systems Expert • Full-Stack Developer</p>
+            <a href="#about" class="cta-button">Discover My Work</a>
+        </div>
+    </section>
 
-  <!-- Navbar -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="profile-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>I'm a Senior Software Engineer with 7+ years of expertise in enterprise software development, specializing in banking systems, payment gateways, and workflow automation. Based in Ja-Ela, Sri Lanka, I have a proven track record of delivering high-impact solutions that significantly improve operational efficiency.</p>
+                    
+                    <p>At Cargills Bank, I've successfully reduced loan processing time from 7 days to just 1 day, while handling 300+ monthly loans and 1,500+ new accounts. My international freelance experience spans across 50+ clients in the USA, UK, Canada, Australia, Germany, UAE, and Asia-Pacific regions with a 98% satisfaction rate.</p>
+                    
+                    <p>I excel in Java ecosystem, Spring Boot, RESTful APIs, and modern web technologies, with strong leadership experience in Agile environments.</p>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">7+</span>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <div class="stat-label">International Clients</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Senior Software Engineer with 7+ years of expertise in enterprise software development, specializing in
-      banking systems, payment gateways, and workflow automation. Proven record of reducing loan processing time
-      from 7+ days to 1 day. International freelance experience with 50+ clients across USA, UK, Canada, Australia,
-      Germany, UAE, and Asia-Pacific (98% satisfaction).
-    </p>
-  </section>
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Dart</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Bootstrap</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-mobile-alt"></i> Mobile Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">Android</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">React Native</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Backend & APIs</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">Spring Framework</span>
+                        <span class="skill-tag">SOAP</span>
+                        <span class="skill-tag">WSDL</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Oracle SQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">Firestore</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Google Cloud</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Java, Spring Boot, Python, JavaScript, PHP, Dart, C++</li>
-      <li>React, Angular, Node.js, Flutter, Android, Firebase</li>
-      <li>MySQL, Oracle SQL, MongoDB, PostgreSQL</li>
-      <li>Docker, Kubernetes, AWS, Google Cloud</li>
-      <li>REST APIs, Microservices, Payment Gateways</li>
-      <li>Git, GitHub, SVN, Bitbucket</li>
-    </ul>
-  </section>
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Cargills Bank Loan System</h3>
+                        <div class="project-tech">Java, Spring Boot, MySQL, Oracle SQL, AJAX</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Enterprise loan management platform serving 300+ monthly applications with comprehensive workflow automation.</p>
+                        <ul class="project-achievements">
+                            <li>Reduced processing time from 7+ days to 1 day</li>
+                            <li>Real-time loan tracking and approval workflows</li>
+                            <li>Advanced AJAX functionality for seamless UX</li>
+                            <li>Comprehensive document management system</li>
+                        </ul>
+                    </div>
+                </div>
 
-  <!-- Experience -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <p><strong>Cargills Bank (2024 – Present)</strong> – Led enterprise banking application development, REST APIs, QA processes, and mentoring junior developers.</p>
-    <p><strong>Cargills Bank (2019 – 2024)</strong> – Built loan systems, payment platforms, account opening systems, reducing loan processing time from 7+ days to 1.</p>
-    <p><strong>Freelance</strong> – Delivered 100+ projects globally across FinTech, E-commerce, Healthcare, and more with 98% satisfaction.</p>
-  </section>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>LankaClear Payment Integration</h3>
+                        <div class="project-tech">Spring Boot, RESTful APIs, WSDL, PCI DSS</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Secure payment gateway integration for government and financial services with national payment platform connectivity.</p>
+                        <ul class="project-achievements">
+                            <li>Integrated CDS, IPO, and government payments</li>
+                            <li>PCI DSS compliant security protocols</li>
+                            <li>Seamless inter-bank communication</li>
+                            <li>Custom payment workflows</li>
+                        </ul>
+                    </div>
+                </div>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>Enterprise Loan Management System (Java, Spring Boot, MySQL)</li>
-      <li>LankaClear Payment Platform Integration (Spring Boot, REST APIs)</li>
-      <li>POS Terminal Management (Java, REST APIs, Real-time Monitoring)</li>
-      <li>OCR-powered Document Processing (Spring Boot, OCR)</li>
-    </ul>
-  </section>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Web Account Opening System</h3>
+                        <div class="project-tech">Java, Spring Boot, HTML5, JavaScript, Bootstrap</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Next-generation digital account opening platform with enhanced UX/UI and automated workflows.</p>
+                        <ul class="project-achievements">
+                            <li>Upgraded legacy system to modern web solution</li>
+                            <li>Digital document upload & e-signature integration</li>
+                            <li>Reduced opening time from days to hours</li>
+                            <li>Responsive design for multiple devices</li>
+                        </ul>
+                    </div>
+                </div>
 
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <p><strong>Bachelor of Information Technology</strong> – University of Colombo (2023)</p>
-    <p><strong>Diploma in IT</strong> – ESOFT Metro Campus & Pearson College London (2017)</p>
-  </section>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Tab Account Opening System</h3>
+                        <div class="project-tech">Java, Android, Spring Boot, RESTful APIs</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Tablet-based mobile account opening solution for branch operations with offline capabilities.</p>
+                        <ul class="project-achievements">
+                            <li>Native Android app for branch staff</li>
+                            <li>Biometric authentication integration</li>
+                            <li>Document scanning functionality</li>
+                            <li>Reduced paperwork by 80%</li>
+                        </ul>
+                    </div>
+                </div>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:nameshdilshan@gmail.com">nameshdilshan@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/namesh-silva-6053ab121/">LinkedIn Profile</a></p>
-    <p>GitHub: <a href="https://github.com/NameshDilshan">NameshDilshan</a></p>
-    <p>Fiverr: <a href="https://www.fiverr.com/s/3835XZa">Freelance Work</a></p>
-  </section>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>ERPEOD Automated System</h3>
+                        <div class="project-tech">Java, Spring Boot, Apache POI, Oracle SQL</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Automated regulatory reporting system for Central Bank compliance with intelligent scheduling.</p>
+                        <ul class="project-achievements">
+                            <li>Reduced 2-day manual work to 30 minutes</li>
+                            <li>Automated data extraction & submission</li>
+                            <li>99.9% accuracy with error handling</li>
+                            <li>Comprehensive audit trails</li>
+                        </ul>
+                    </div>
+                </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Namesh Dilshan. All Rights Reserved.</p>
-  </footer>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Mandate Scanning Workflow</h3>
+                        <div class="project-tech">Java, Spring Boot, OCR, Document Management</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Intelligent document processing system for banking mandates with OCR-powered automation.</p>
+                        <ul class="project-achievements">
+                            <li>OCR-powered mandate processing</li>
+                            <li>Automated workflows across 50+ branches</li>
+                            <li>Reduced processing from 3 days to 2 hours</li>
+                            <li>95% accuracy with digital archiving</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 style="color: #667eea; margin-bottom: 2rem;">Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+94 71 469 5886</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:nameshdilshan@gmail.com">nameshdilshan@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ja-Ela, Sri Lanka</span>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Fiverr">
+                            <i class="fas fa-briefcase"></i>
+                        </a>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; color: white;">
+                        <h4 style="margin-bottom: 1rem;">Available for:</h4>
+                        <ul style="list-style: none; line-height: 1.8;">
+                            <li>✓ Full-time opportunities</li>
+                            <li>✓ Freelance projects</li>
+                            <li>✓ Technical consulting</li>
+                            <li>✓ Code reviews & mentoring</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-button">
+                        <span class="button-text">Send Message</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Namesh Dilshan. All rights reserved. Built with passion for excellent software development.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const button = event.target.querySelector('.form-button');
+            const buttonText = button.querySelector('.button-text');
+            
+            // Show loading state
+            buttonText.innerHTML = '<span class="loading"></span> Sending...';
+            button.disabled = true;
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+                buttonText.textContent = 'Message Sent!';
+                button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                
+                // Reset form
+                event.target.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    buttonText.textContent = 'Send Message';
+                    button.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                    button.disabled = false;
+                }, 3000);
+            }, 2000);
+        }
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const finalValue = stat.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                        
+                        let currentValue = 0;
+                        const increment = numericValue / 30;
+                        
+                        const counter = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= numericValue) {
+                                stat.textContent = finalValue;
+                                clearInterval(counter);
+                            } else {
+                                const displayValue = Math.floor(currentValue);
+                                stat.textContent = isPercentage ? displayValue + '%' : 
+                                                 displayValue >= 100 ? displayValue + '+' : displayValue;
+                            }
+                        }, 50);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe stats section
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Add typing effect to hero text
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', function() {
+            const heroSubtitle = document.querySelector('.hero p');
+            const originalText = heroSubtitle.textContent;
+            setTimeout(() => {
+                typeWriter(heroSubtitle, originalText, 50);
+            }, 1000);
+        });
+
+        // Mobile menu toggle (for future enhancement)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Add scroll-to-top functionality
+        const scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        scrollToTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        `;
+
+        document.body.appendChild(scrollToTopBtn);
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.style.opacity = '1';
+                scrollToTopBtn.style.visibility = 'visible';
+            } else {
+                scrollToTopBtn.style.opacity = '0';
+                scrollToTopBtn.style.visibility = 'hidden';
+            }
+        });
+
+        // Add particle effect to hero section (lightweight version)
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    animation: float ${5 + Math.random() * 10}s linear infinite;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation-delay: ${Math.random() * 5}s;
+                `;
+                hero.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        setTimeout(createParticles, 1000);
+
+        // Performance optimization: Lazy load images (if any are added later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
 </body>
 </html>
