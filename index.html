@@ -1,1346 +1,1056 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namesh Dilshan - Senior Software Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --gray: #64748b;
-            --light: #f1f5f9;
-            --white: #ffffff;
-            --accent: #06b6d4;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #0f172a, #1e293b);
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -250px;
-            right: -250px;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .bg-animation::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -200px;
-            left: -200px;
-            animation: float 15s infinite ease-in-out reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--light);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 2rem;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: var(--gray);
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s backwards;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.8s backwards;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: var(--white);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .skill-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--gradient);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 3px solid var(--dark);
-            box-shadow: 0 0 0 3px var(--primary);
-        }
-
-        .timeline-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s;
-        }
-
-        .timeline-card:hover {
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .timeline-title {
-            font-size: 1.5rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-company {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .timeline-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .timeline-description {
-            color: var(--gray);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-achievements {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .timeline-achievements li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            color: var(--light);
-        }
-
-        .timeline-achievements li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .project-header {
-            background: var(--gradient);
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .project-card:hover .project-header::before {
-            top: -100%;
-            right: -100%;
-        }
-
-        .project-icon {
-            font-size: 2rem;
-            color: var(--white);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            color: var(--gray);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(6, 182, 212, 0.1);
-            color: var(--accent);
-            padding: 0.3rem 0.7rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s;
-        }
-
-        .contact-item:hover {
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 10px;
-        }
-
-        .contact-details h3 {
-            color: var(--white);
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-details p {
-            color: var(--gray);
-        }
-
-        .contact-details a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .contact-details a:hover {
-            text-decoration: underline;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 10px;
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-5px);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(15, 23, 42, 0.95);
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray);
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Scroll Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--gradient);
-            z-index: 9999;
-            transition: width 0.1s;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                flex-direction: column;
-                background: rgba(15, 23, 42, 0.98);
-                width: 100%;
-                padding: 2rem;
-                transition: left 0.3s;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-            }
-
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namesh Dilshan – Senior Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ---------- ROOT & RESET ---------- */
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
+      --dark: #0f172a;
+      --dark-light: #1e293b;
+      --gray: #64748b;
+      --light: #f1f5f9;
+      --white: #ffffff;
+      --accent: #06b6d4;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ---------- ANIMATED BG ---------- */
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(45deg, #0f172a, #1e293b);
+    }
+    .bg-animation::before,
+    .bg-animation::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      animation: float 20s infinite ease-in-out;
+    }
+    .bg-animation::before {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, .1) 0%, transparent 70%);
+      top: -250px;
+      right: -250px;
+    }
+    .bg-animation::after {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 92, 246, .1) 0%, transparent 70%);
+      bottom: -200px;
+      left: -200px;
+      animation-direction: reverse;
+      animation-duration: 15s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, .95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--light);
+      transition: .3s;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 2rem;
+      position: relative;
+    }
+    .hero-content {
+      max-width: 1200px;
+      text-align: center;
+      z-index: 1;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease;
+    }
+    .hero-subtitle {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease .2s backwards;
+    }
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      animation: fadeInUp 1s ease .4s backwards;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease .6s backwards;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { color: var(--gray); font-size: .9rem; }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease .8s backwards;
+    }
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background: var(--gradient);
+      color: var(--white);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, .3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, .4);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--light);
+      border: 2px solid var(--primary);
+    }
+    .btn-secondary:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .skill-card {
+      background: rgba(30, 41, 59, .5);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(99, 102, 241, .1);
+      transition: all .3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, .2);
+    }
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .skill-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--white); }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .skill-tag {
+      background: rgba(99, 102, 241, .1);
+      color: var(--primary);
+      padding: .4rem .8rem;
+      border-radius: 20px;
+      font-size: .85rem;
+      border: 1px solid rgba(99, 102, 241, .2);
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: var(--gradient);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid var(--dark);
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+    .timeline-card {
+      background: rgba(30, 41, 59, .5);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(99, 102, 241, .1);
+      transition: all .3s;
+    }
+    .timeline-card:hover {
+      border-color: var(--primary);
+      transform: translateX(10px);
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .timeline-title { font-size: 1.5rem; color: var(--white); margin-bottom: .5rem; }
+    .timeline-company { color: var(--primary); font-weight: 600; }
+    .timeline-date { color: var(--gray); font-size: .9rem; }
+    .timeline-description { color: var(--gray); margin-bottom: 1rem; }
+    .timeline-achievements {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .timeline-achievements li {
+      padding-left: 1.5rem;
+      margin-bottom: .5rem;
+      position: relative;
+      color: var(--light);
+    }
+    .timeline-achievements li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: rgba(30, 41, 59, .5);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(99, 102, 241, .1);
+      transition: all .3s;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, .2);
+    }
+    .project-header {
+      background: var(--gradient);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, .1);
+      transform: rotate(45deg);
+      transition: all .5s;
+    }
+    .project-card:hover .project-header::before {
+      top: -100%;
+      right: -100%;
+    }
+    .project-icon { font-size: 2rem; color: var(--white); }
+    .project-content { padding: 1.5rem; }
+    .project-title { font-size: 1.3rem; color: var(--white); margin-bottom: .5rem; }
+    .project-description { color: var(--gray); margin-bottom: 1rem; font-size: .95rem; }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+    .tech-tag {
+      background: rgba(6, 182, 212, .1);
+      color: var(--accent);
+      padding: .3rem .7rem;
+      border-radius: 15px;
+      font-size: .8rem;
+      border: 1px solid rgba(6, 182, 212, .2);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(30, 41, 59, .5);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      border: 1px solid rgba(99, 102, 241, .1);
+      transition: all .3s;
+    }
+    .contact-item:hover {
+      border-color: var(--primary);
+      transform: translateX(10px);
+    }
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, .1);
+      border-radius: 10px;
+    }
+    .contact-details h3 { color: var(--white); margin-bottom: .3rem; }
+    .contact-details p { color: var(--gray); }
+    .contact-details a { color: var(--primary); text-decoration: none; }
+    .contact-details a:hover { text-decoration: underline; }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .social-link {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, .1);
+      border-radius: 10px;
+      color: var(--primary);
+      text-decoration: none;
+      transition: all .3s;
+      border: 1px solid rgba(99, 102, 241, .2);
+    }
+    .social-link:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-5px);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: rgba(15, 23, 42, .95);
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+      border-top: 1px solid rgba(99, 102, 241, .1);
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- SCROLL PROGRESS ---------- */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gradient);
+      z-index: 9999;
+      transition: width .1s;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(15, 23, 42, .98);
+        width: 100%;
+        padding: 2rem;
+        transition: left .3s;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+      }
+      .nav-links.active { left: 0; }
+      .menu-toggle { display: flex; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-subtitle { font-size: 1.3rem; }
+      .hero-description { font-size: 1rem; }
+      .hero-stats { gap: 1.5rem; }
+      .stat-number { font-size: 2rem; }
+      .contact-container,
+      .projects-grid,
+      .skills-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="progress-bar" id="progressBar"></div>
+  <div class="bg-animation"></div>
+  <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">ND</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+  <!-- ---------- NAV ---------- -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">ND</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 class="hero-title">Namesh Dilshan</h1>
+      <h2 class="hero-subtitle">Senior Software Engineer</h2>
+      <p class="hero-description">
+        Transforming ideas into powerful enterprise solutions. Specialized in banking systems, payment gateways, and workflow automation with 7+ years of expertise delivering high-impact solutions across global markets.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">7+</div>
+          <div class="stat-label">Years Experience</div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="hero-title">Namesh Dilshan</h1>
-            <h2 class="hero-subtitle">Senior Software Engineer</h2>
-            <p class="hero-description">
-                Transforming ideas into powerful enterprise solutions. Specialized in banking systems, payment gateways, and workflow automation with 7+ years of expertise delivering high-impact solutions across global markets.
-            </p>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">7+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Projects Delivered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">25+</div>
-                    <div class="stat-label">Global Clients</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Satisfaction Rate</div>
-                </div>
-            </div>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> Get In Touch
-                </a>
-                <a href="#projects" class="btn btn-secondary">
-                    <i class="fas fa-briefcase"></i> View Projects
-                </a>
-            </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Projects Delivered</div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="fade-in">
-        <h2 class="section-title">About Me</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-card">
-                    <p style="font-size: 1.1rem; color: var(--light); line-height: 1.8;">
-                        I'm a passionate Senior Software Engineer with over 7 years of experience in enterprise software development. My expertise lies in building robust banking systems, payment gateways, and workflow automation solutions that drive real business impact.
-                        <br><br>
-                        Throughout my career, I've had the privilege of working on transformative projects at Cargills Bank, where I reduced loan processing time from 7 days to just 1 day, handling 300+ monthly loans and 1,500+ new accounts. 
-                        <br><br>
-                        As an international freelancer, I've served 25+ clients across USA, UK, Canada, Australia, Germany, UAE, and Asia-Pacific regions, maintaining a 98% satisfaction rate. I specialize in Java ecosystem, Spring Boot, RESTful APIs, and modern web technologies, with a strong foundation in Agile methodologies and team leadership.
-                    </p>
-                </div>
-            </div>
+        <div class="stat-item">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Global Clients</div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="fade-in">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-code"></i></div>
-                <h3 class="skill-title">Programming Languages</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">Dart</span>
-                    <span class="skill-tag">C++</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-server"></i></div>
-                <h3 class="skill-title">Backend Development</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Spring Boot</span>
-                    <span class="skill-tag">RESTful APIs</span>
-                    <span class="skill-tag">Microservices</span>
-                    <span class="skill-tag">Java EE</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">SOAP/WSDL</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-palette"></i></div>
-                <h3 class="skill-title">Frontend Development</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Angular</span>
-                    <span class="skill-tag">HTML5/CSS3</span>
-                    <span class="skill-tag">Bootstrap</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">AJAX</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3 class="skill-title">Mobile Development</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Flutter</span>
-                    <span class="skill-tag">Android</span>
-                    <span class="skill-tag">React Native</span>
-                    <span class="skill-tag">Firebase</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                <h3 class="skill-title">Databases</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Oracle SQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">Firestore</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
-                <h3 class="skill-title">Cloud & DevOps</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Kubernetes</span>
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">GCP</span>
-                    <span class="skill-tag">CI/CD</span>
-                </div>
-            </div>
+        <div class="stat-item">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Satisfaction Rate</div>
         </div>
-    </section>
+      </div>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
+        <a href="#projects" class="btn btn-secondary"><i class="fas fa-briefcase"></i> View Projects</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="fade-in">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <h3 class="timeline-title">Senior Software Engineer</h3>
-                            <p class="timeline-company">Cargills Bank (Pvt) Ltd. | Colombo, Sri Lanka</p>
-                        </div>
-                        <span class="timeline-date">2018 - Present</span>
-                    </div>
-                    <p class="timeline-description">
-                        Serving 25+ clients across USA, UK, Canada, Australia, Germany, UAE, and Asia-Pacific regions with comprehensive software solutions.
-                    </p>
-                    <ul class="timeline-achievements">
-                        <li>Successfully delivered 40+ projects with 98% client satisfaction rate</li>
-                        <li>Maintained 5-star rating across all freelancing platforms</li>
-                        <li>Expertise in FinTech, E-commerce, Healthcare, Education, and Real Estate solutions</li>
-                        <li>Delivered mobile apps, WordPress solutions, desktop applications, and IoT solutions</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <h3 class="timeline-title">Intern Java Developer</h3>
-                            <p class="timeline-company">Hiru Sandu Services (Pvt) Ltd. | Ja-Ela, Sri Lanka</p>
-                        </div>
-                        <span class="timeline-date">Jan 2017 - Jul 2018</span>
-                    </div>
-                    <p class="timeline-description">
-                        Developed key modules for accounting and inventory management systems with enhanced user interfaces.
-                    </p>
-                    <ul class="timeline-achievements">
-                        <li>Created responsive user interfaces using JavaFX and Swing</li>
-                        <li>Enhanced system functionality and improved overall user experience</li>
-                        <li>Collaborated with senior developers on software design and implementation</li>
-                    </ul>
-                </div>
-            </div>
+  <!-- ---------- ABOUT ---------- -->
+  <section id="about" class="fade-in">
+    <h2 class="section-title">About Me</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <p style="font-size: 1.1rem; color: var(--light); line-height: 1.8;">
+            I'm a passionate Senior Software Engineer with over 7 years of experience in enterprise software development. My expertise lies in building robust banking systems, payment gateways, and workflow automation solutions that drive real business impact.
+            <br><br>
+            Throughout my career, I've had the privilege of working on transformative projects at Cargills Bank, where I reduced loan processing time from 7 days to just 1 day, handling 300+ monthly loans and 1,500+ new accounts.
+            <br><br>
+            As an international freelancer, I've served 25+ clients across USA, UK, Canada, Australia, Germany, UAE, and Asia-Pacific regions, maintaining a 98% satisfaction rate. I specialize in Java ecosystem, Spring Boot, RESTful APIs, and modern web technologies, with a strong foundation in Agile methodologies and team leadership.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="fade-in">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-university"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Cargills Bank Loan System</h3>
-                    <p class="project-description">
-                        Enterprise loan management platform serving 300+ monthly applications with end-to-end workflow automation. Reduced processing time from 7+ days to 1 day.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Oracle SQL</span>
-                        <span class="tech-tag">AJAX</span>
-                        <span class="tech-tag">Bootstrap</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-credit-card"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">LankaClear Payment Platform</h3>
-                    <p class="project-description">
-                        Secure payment gateway integration for government and financial services with PCI DSS compliance. Enabled seamless inter-bank communication.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">RESTful APIs</span>
-                        <span class="tech-tag">WSDL</span>
-                        <span class="tech-tag">SOAP</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-user-plus"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Web Account Opening System</h3>
-                    <p class="project-description">
-                        Next-generation digital account opening platform with e-signature integration and real-time verification. Reduced opening time from days to hours.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-tablet-alt"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Tab Account Opening System</h3>
-                    <p class="project-description">
-                        Tablet-based mobile account opening solution with biometric authentication and document scanning. Reduced paperwork by 80%.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Android</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">RESTful APIs</span>
-                        <span class="tech-tag">Firebase</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-file-alt"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">ERPEOD System</h3>
-                    <p class="project-description">
-                        Automated regulatory reporting system for Central Bank compliance. Reduced 2-day manual work to 30 minutes with 99.9% accuracy.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">Apache POI</span>
-                        <span class="tech-tag">Oracle SQL</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-scan"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Mandate Scanning Workflow</h3>
-                    <p class="project-description">
-                        Document processing system with OCR integration. Reduced processing time from 3 days to 2 hours with 95% accuracy. Won Best Process Improvement Award.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">OCR</span>
-                        <span class="tech-tag">Document Management</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-cash-register"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">POS Terminal Management</h3>
-                    <p class="project-description">
-                        Centralized management platform for 400+ payment terminals with real-time monitoring. Achieved 99.5% uptime across multiple locations.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Real-time Monitoring</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-archive"></i></div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Treasury Archive Management</h3>
-                    <p class="project-description">
-                        Digital document management solution with role-based access control. Reduced document retrieval time from hours to minutes.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">Oracle SQL</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Bootstrap</span>
-                    </div>
-                </div>
-            </div>
+  <!-- ---------- SKILLS ---------- -->
+  <section id="skills" class="fade-in">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-code"></i></div>
+        <h3 class="skill-title">Programming Languages</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">Dart</span>
+          <span class="skill-tag">C++</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="fade-in">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p><a href="mailto:nameshdilshan@gmail.com">nameshdilshan@gmail.com</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Phone</h3>
-                        <p><a href="tel:+94714695886">+94 71 469 5886</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Location</h3>
-                        <p>Ja-Ela, Sri Lanka</p>
-                    </div>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/namesh" class="social-link" target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/namesh" class="social-link" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://fiverr.com/namesh" class="social-link" target="_blank" title="Fiverr">
-                        <i class="fas fa-f"></i>
-                    </a>
-                    <a href="mailto:nameshdilshan@gmail.com" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="contact-info">
-                <div class="timeline-card" style="padding: 2.5rem;">
-                    <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 1rem;">Let's Work Together</h3>
-                    <p style="color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8;">
-                        I'm always interested in hearing about new projects and opportunities. Whether you need help with enterprise software development, banking solutions, payment gateway integration, or any other software engineering challenge, feel free to reach out!
-                    </p>
-                    <ul class="timeline-achievements">
-                        <li>Enterprise Software Development</li>
-                        <li>Banking & Payment Systems</li>
-                        <li>Workflow Automation</li>
-                        <li>Mobile & Web Applications</li>
-                        <li>Cloud & DevOps Solutions</li>
-                        <li>Technical Consultation</li>
-                    </ul>
-                    <div style="margin-top: 2rem;">
-                        <a href="mailto:nameshdilshan@gmail.com" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </a>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-server"></i></div>
+        <h3 class="skill-title">Backend Development</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">RESTful APIs</span>
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">Java EE</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">SOAP/WSDL</span>
         </div>
-    </section>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-palette"></i></div>
+        <h3 class="skill-title">Frontend Development</h3>
+        <div class="skill-list">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">HTML5/CSS3</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">AJAX</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3 class="skill-title">Mobile Development</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Flutter</span>
+          <span class="skill-tag">Android</span>
+          <span class="skill-tag">React Native</span>
+          <span class="skill-tag">Firebase</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-database"></i></div>
+        <h3 class="skill-title">Databases</h3>
+        <div class="skill-list">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Oracle SQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Firestore</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+        <h3 class="skill-title">Cloud & DevOps</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">GCP</span>
+          <span class="skill-tag">CI/CD</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Namesh Dilshan. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Senior Software Engineer | Banking Systems Specialist | International Freelancer</p>
-    </footer>
+  <!-- ---------- EXPERIENCE ---------- -->
+  <section id="experience" class="fade-in">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title">Senior Software Engineer</h3>
+              <p class="timeline-company">Cargills Bank (Pvt) Ltd. | Colombo, Sri Lanka</p>
+            </div>
+            <span class="timeline-date">Feb 2024 - Present</span>
+          </div>
+          <p class="timeline-description">Leading enterprise banking application development, serving 300+ monthly loan applications and 1,500+ new accounts.</p>
+          <ul class="timeline-achievements">
+            <li>Streamlined loan processing workflow handling 300+ new loans monthly</li>
+            <li>Automated account opening system processing 1,500+ new accounts monthly</li>
+            <li>Improved operational efficiency through middleware integration</li>
+            <li>Mentored junior developers while maintaining high code quality standards</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title">Software Engineer</h3>
+              <p class="timeline-company">Cargills Bank (Pvt) Ltd. | Colombo, Sri Lanka</p>
+            </div>
+            <span class="timeline-date">Aug 2019 - Feb 2024</span>
+          </div>
+          <p class="timeline-description">Developed and maintained enterprise banking systems with focus on performance, security, and user experience.</p>
+          <ul class="timeline-achievements">
+            <li>Reduced loan processing time from 7+ days to 1 day through workflow automation</li>
+            <li>Integrated LankaClear Online Payment Platform for secure government payments</li>
+            <li>Automated mandate scanning processes, reducing manual workload by 80%</li>
+            <li>Won Best Process Improvement Project award for Mandate Scanning Workflow (2023-2024)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title">Freelance Software Engineer</h3>
+              <p class="timeline-company">International Platforms | Remote</p>
+            </div>
+            <span class="timeline-date">2018 - Present</span>
+          </div>
+          <p class="timeline-description">Serving 25+ clients across USA, UK, Canada, Australia, Germany, UAE, and Asia-Pacific regions with comprehensive software solutions.</p>
+          <ul class="timeline-achievements">
+            <li>Successfully delivered 40+ projects with 98% client satisfaction rate</li>
+            <li>Maintained 5-star rating across all freelancing platforms</li>
+            <li>Expertise in FinTech, E-commerce, Healthcare, Education, and Real Estate solutions</li>
+            <li>Delivered mobile apps, WordPress solutions, desktop applications, and IoT solutions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title">Intern Java Developer</h3>
+              <p class="timeline-company">Hiru Sandu Services (Pvt) Ltd. | Ja-Ela, Sri Lanka</p>
+            </div>
+            <span class="timeline-date">Jan 2017 - Jul 2018</span>
+          </div>
+          <p class="timeline-description">Developed key modules for accounting and inventory management systems with enhanced user interfaces.</p>
+          <ul class="timeline-achievements">
+            <li>Created responsive user interfaces using JavaFX and Swing</li>
+            <li>Enhanced system functionality and improved overall user experience</li>
+            <li>Collaborated with senior developers on software design and implementation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+  <!-- ---------- PROJECTS ---------- -->
+  <section id="projects" class="fade-in">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-university"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">Cargills Bank Loan System</h3>
+          <p class="project-description">Enterprise loan management platform serving 300+ monthly applications with end-to-end workflow automation. Reduced processing time from 7+ days to 1 day.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Oracle SQL</span>
+            <span class="tech-tag">AJAX</span>
+            <span class="tech-tag">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-credit-card"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">LankaClear Payment Platform</h3>
+          <p class="project-description">Secure payment gateway integration for government and financial services with PCI DSS compliance. Enabled seamless inter-bank communication.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">RESTful APIs</span>
+            <span class="tech-tag">WSDL</span>
+            <span class="tech-tag">SOAP</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-user-plus"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">Web Account Opening System</h3>
+          <p class="project-description">Next-generation digital account opening platform with e-signature integration and real-time verification. Reduced opening time from days to hours.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-tablet-alt"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">Tab Account Opening System</h3>
+          <p class="project-description">Tablet-based mobile account opening solution with biometric authentication and document scanning. Reduced paperwork by 80%.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Android</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">RESTful APIs</span>
+            <span class="tech-tag">Firebase</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-file-alt"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">ERPEOD System</h3>
+          <p class="project-description">Automated regulatory reporting system for Central Bank compliance. Reduced 2-day manual work to 30 minutes with 99.9% accuracy.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">Apache POI</span>
+            <span class="tech-tag">Oracle SQL</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-scan"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">Mandate Scanning Workflow</h3>
+          <p class="project-description">Document processing system with OCR integration. Reduced processing time from 3 days to 2 hours with 95% accuracy. Won Best Process Improvement Award.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">OCR</span>
+            <span class="tech-tag">Document Management</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-cash-register"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">POS Terminal Management</h3>
+          <p class="project-description">Centralized management platform for 400+ payment terminals with real-time monitoring. Achieved 99.5% uptime across multiple locations.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Real-time Monitoring</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-archive"></i></div></div>
+        <div class="project-content">
+          <h3 class="project-title">Treasury Archive Management</h3>
+          <p class="project-description">Digital document management solution with role-based access control. Reduced document retrieval time from hours to minutes.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">Oracle SQL</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+  <!-- ---------- CONTACT ---------- -->
+  <section id="contact" class="fade-in">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-details">
+            <h3>Email</h3>
+            <p><a href="mailto:nameshdilshan@gmail.com">nameshdilshan@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-details">
+            <h3>Phone</h3>
+            <p><a href="tel:+94714695886">+94 71 469 5886</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-details">
+            <h3>Location</h3>
+            <p>Ja-Ela, Sri Lanka</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/namesh-silva-6053ab121/" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/NameshDilshan" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.fiverr.com/s/3835XZa" class="social-link" target="_blank" title="Fiverr"><i class="fas fa-f"></i></a>
+          <a href="mailto:nameshdilshan@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="timeline-card" style="padding: 2.5rem;">
+          <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 1rem;">Let's Work Together</h3>
+          <p style="color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8;">
+            I'm always interested in hearing about new projects and opportunities. Whether you need help with enterprise software development, banking solutions, payment gateway integration, or any other software engineering challenge, feel free to reach out!
+          </p>
+          <ul class="timeline-achievements">
+            <li>Enterprise Software Development</li>
+            <li>Banking & Payment Systems</li>
+            <li>Workflow Automation</li>
+            <li>Mobile & Web Applications</li>
+            <li>Cloud & DevOps Solutions</li>
+            <li>Technical Consultation</li>
+          </ul>
+          <div style="margin-top: 2rem;">
+            <a href="mailto:nameshdilshan@gmail.com" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+  <!-- ---------- FOOTER ---------- -->
+  <footer>
+    <p>&copy; <script>document.write(new Date().getFullYear());</script> Namesh Dilshan. All rights reserved.</p>
+    <p style="margin-top: .5rem; font-size: .9rem;">Senior Software Engineer | Banking Systems Specialist | International Freelancer</p>
+  </footer>
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <!-- ---------- SCRIPTS ---------- -->
+  <script>
+    /* ------ Mobile Menu ------ */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
 
-        // Scroll Progress Bar
-        window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
-
-        // Intersection Observer for Fade-in Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Active Navigation Link
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.style.color = '';
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.style.color = 'var(--primary)';
-                }
-            });
-        });
-
-        // Parallax Effect for Hero Section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            const hero = document.querySelector('.hero-content');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-                hero.style.opacity = 1 - (scrolled / window.innerHeight);
-            }
-        });
-
-        // Add hover effect to project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Counter Animation for Stats
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
-                }
-            }, 16);
+    /* ------ Smooth Scroll ------ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+      });
+    });
 
-        // Trigger counter animation when stats section is visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        const text = stat.textContent;
-                        const hasPlus = text.includes('+');
-                        const hasPercent = text.includes('%');
-                        const number = parseInt(text.replace(/\D/g, ''));
-                        
-                        stat.textContent = '0' + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
-                        animateCounter(stat, number);
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+    /* ------ Scroll Progress ------ */
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
 
-        const heroStats = document.querySelector('.hero-stats');
-        if (heroStats) {
-            statsObserver.observe(heroStats);
+    /* ------ Intersection Observer (fade-in) ------ */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -100px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    /* ------ Active Nav Link ------ */
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= (sectionTop - 200)) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.style.color = '';
+        if (link.getAttribute('href').slice(1) === current) link.style.color = 'var(--primary)';
+      });
+    });
+
+    /* ------ Parallax Hero ------ */
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const hero = document.querySelector('.hero-content');
+      if (hero && scrolled < window.innerHeight) {
+        hero.style.transform = `translateY(${scrolled * .3}px)`;
+        hero.style.opacity = 1 - (scrolled / window.innerHeight);
+      }
+    });
+
+    /* ------ Counter Animation ------ */
+    function animateCounter(element, target, duration = 2000) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          element.textContent = (element.textContent.includes('+') ? target + '+' : target + '%');
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '%');
         }
-
-        // Add typing effect to hero subtitle
-        const subtitle = document.querySelector('.hero-subtitle');
-        if (subtitle) {
-            const text = subtitle.textContent;
-            subtitle.textContent = '';
-            let i = 0;
-            
-            setTimeout(() => {
-                const typeInterval = setInterval(() => {
-                    if (i < text.length) {
-                        subtitle.textContent += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(typeInterval);
-                    }
-                }, 100);
-            }, 1000);
+      }, 16);
+    }
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-number').forEach(stat => {
+            const value = parseInt(stat.textContent.replace(/\D/g, ''));
+            stat.textContent = stat.textContent.includes('+') ? '0+' : '0%';
+            animateCounter(stat, value);
+          });
+          statsObserver.unobserve(entry.target);
         }
-    </script>
+      });
+    }, { threshold: .5 });
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) statsObserver.observe(heroStats);
+
+    /* ------ Typing Subtitle ------ */
+    const subtitle = document.querySelector('.hero-subtitle');
+    if (subtitle) {
+      const text = subtitle.textContent;
+      subtitle.textContent = '';
+      let i = 0;
+      setTimeout(() => {
+        const typeInterval = setInterval(() => {
+          if (i < text.length) {
+            subtitle.textContent += text.charAt(i);
+            i++;
+          } else clearInterval(typeInterval);
+        }, 100);
+      }, 1000);
+    }
+  </script>
 </body>
-</html>="timeline-date">Feb 2024 - Present</span>
-                    </div>
-                    <p class="timeline-description">
-                        Leading enterprise banking application development, serving 300+ monthly loan applications and 1,500+ new accounts.
-                    </p>
-                    <ul class="timeline-achievements">
-                        <li>Streamlined loan processing workflow handling 300+ new loans monthly</li>
-                        <li>Automated account opening system processing 1,500+ new accounts monthly</li>
-                        <li>Improved operational efficiency through middleware integration</li>
-                        <li>Mentored junior developers while maintaining high code quality standards</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <h3 class="timeline-title">Software Engineer</h3>
-                            <p class="timeline-company">Cargills Bank (Pvt) Ltd. | Colombo, Sri Lanka</p>
-                        </div>
-                        <span class="timeline-date">Aug 2019 - Feb 2024</span>
-                    </div>
-                    <p class="timeline-description">
-                        Developed and maintained enterprise banking systems with focus on performance, security, and user experience.
-                    </p>
-                    <ul class="timeline-achievements">
-                        <li>Reduced loan processing time from 7+ days to 1 day through workflow automation</li>
-                        <li>Integrated LankaClear Online Payment Platform for secure government payments</li>
-                        <li>Automated mandate scanning processes, reducing manual workload by 80%</li>
-                        <li>Won Best Process Improvement Project award for Mandate Scanning Workflow (2023-2024)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <h3 class="timeline-title">Freelance Software Engineer</h3>
-                            <p class="timeline-company">International Platforms | Remote</p>
-                        </div>
-                        <span class
+</html>
